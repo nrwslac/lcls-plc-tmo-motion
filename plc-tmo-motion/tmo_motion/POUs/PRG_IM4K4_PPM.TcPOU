@@ -20,6 +20,8 @@ VAR
                               .fbYagThermoCouple.iRaw 					:= TIIB[IM4K4-EL3314-E4]^TC Inputs Channel 2^Value'}
     fbIM4K4: FB_PPM;
     fStartupVelo: LREAL := 15;
+    {attribute 'TcLinkTo' := '.iRaw 					:= TIIB[IM4K4-EL3052-E5]^AI Standard Channel 1^Value; '}
+    fbFDQTestIM4K4 : FB_AnalogInput;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -58,9 +60,12 @@ fbIM4K4(
     fbArbiter := fbArbiter,
     fbFFHWO := fbFastFaultOutput1,
     stYStage := Main.M16,
-	sPmpsDeviceName := 'IM4K4:PPM',
-	sTransitionKey := 'IM4K4:PPM-TRANSITION',
-);]]></ST>
+    sPmpsDeviceName := 'IM4K4:PPM',
+    sTransitionKey := 'IM4K4:PPM-TRANSITION',
+);
+
+
+fbFDQtestIM4K4(iTermBits:=12, fTermMax:=60, fTermMin:=0);]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
